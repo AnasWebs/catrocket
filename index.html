@@ -48,9 +48,8 @@
       position: relative;
       width: 200px;
       height: 400px;
-      overflow: hidden;
       margin-top: 50px;
-      display: none; /* Hidden by default */
+      overflow: hidden;
     }
 
     #catRocket {
@@ -58,18 +57,12 @@
       bottom: -400px; /* Start from bottom */
       left: 50%;
       transform: translateX(-50%);
-      animation: launchAnimation 3s ease-in-out forwards; /* Rocket launch animation */
+      transition: transform 3s ease-in-out;
     }
 
     @keyframes launchAnimation {
       0% { transform: translateY(0); } /* Start position */
       100% { transform: translateY(-100%); } /* End position */
-    }
-
-    #successMessage {
-      display: none;
-      font-size: 2em;
-      color: #00ff00; /* Green color for success message */
     }
   </style>
 </head>
@@ -79,7 +72,6 @@
     <button id="launchButton">Launch Cat Rocket</button>
     <div id="rocketContainer">
       <img id="catRocket" src="InShot_20240511_231634080-removebg-preview.png" alt="Cat Rocket">
-      <div id="successMessage">Successfully Launched!</div>
     </div>
   </div>
 
@@ -102,9 +94,8 @@
 
     function launchRocket() {
       document.getElementById('launchButton').style.display = 'none';
-      document.getElementById('rocketContainer').style.display = 'block';
-      document.getElementById('successMessage').style.display = 'block';
-      setTimeout(refreshPage, 10000);
+      document.getElementById('catRocket').style.transform = 'translateY(-100%)'; /* Move to top */
+      setTimeout(refreshPage, 3000); // Refresh page after 3 seconds of launch
     }
 
     function refreshPage() {
