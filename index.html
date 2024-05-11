@@ -58,7 +58,12 @@
       bottom: -400px; /* Start from bottom */
       left: 50%;
       transform: translateX(-50%);
-      transition: transform 3s ease-in-out;
+      animation: launchAnimation 3s ease-in-out forwards; /* Rocket launch animation */
+    }
+
+    @keyframes launchAnimation {
+      0% { transform: translateY(0); } /* Start position */
+      100% { transform: translateY(-100%); } /* End position */
     }
 
     #successMessage {
@@ -98,7 +103,6 @@
     function launchRocket() {
       document.getElementById('launchButton').style.display = 'none';
       document.getElementById('rocketContainer').style.display = 'block';
-      document.getElementById('catRocket').style.transform = 'translateY(0)'; /* Move to top */
       document.getElementById('successMessage').style.display = 'block';
       setTimeout(refreshPage, 10000);
     }
