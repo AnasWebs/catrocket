@@ -5,67 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cat Rocket Launch</title>
   <style>
+    /* General Styles */
     body {
-      font-family: Arial, sans-serif;
-      background-color: #0c0c0c;
-      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1a1a1a; /* Dark background */
+      color: #e0e0e0; /* Light text color */
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
     .container {
-      max-width: 800px;
-      margin: 50px auto;
       text-align: center;
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 3em;
       margin-bottom: 20px;
+      color: #ffd700; /* Gold color for heading */
     }
 
     #launchButton {
-      padding: 10px 20px;
-      background-color: #4CAF50;
+      padding: 12px 24px;
+      background-color: #ff4500; /* Orange button color */
       color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 1.2em;
+      transition: background-color 0.3s ease;
     }
 
+    #launchButton:hover {
+      background-color: #ff6103; /* Lighter orange on hover */
+    }
+
+    /* Rocket Container Styles */
     #rocketContainer {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
       width: 200px;
       height: 400px;
       overflow: hidden;
+      margin-top: 50px;
+      display: none; /* Hidden by default */
     }
 
     #catRocket {
       position: absolute;
-      bottom: 0;
+      bottom: -400px; /* Start from bottom */
       left: 50%;
       transform: translateX(-50%);
-      transition: bottom 1s ease-in-out;
+      transition: transform 3s ease-in-out;
     }
 
-    #countdown {
-      font-size: 4em;
-      color: #fff;
-      opacity: 0;
-      animation: countdownAnimation 1s linear forwards;
-    }
-
-    @keyframes countdownAnimation {
-      0% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    @keyframes rocketLaunch {
-      0% { bottom: 0; }
-      100% { bottom: 100%; }
+    #successMessage {
+      display: none;
+      font-size: 2em;
+      color: #00ff00; /* Green color for success message */
     }
   </style>
 </head>
@@ -73,37 +72,35 @@
   <div class="container">
     <h1>Welcome to Cat Rocket Launch</h1>
     <button id="launchButton">Launch Cat Rocket</button>
+    <div id="rocketContainer">
+      <img id="catRocket" src="cat_rocket.png" alt="Cat Rocket">
+      <div id="successMessage">Successfully Launched!</div>
+    </div>
   </div>
-  <div id="rocketContainer">
-    <img id="catRocket" src="cat_rocket.png" alt="Cat Rocket">
-    <div id="countdown" class="countdown">10</div>
-  </div>
-  <script>
-    let countdownValue = 10;
-    let launchSuccess = false;
 
+  <script>
     document.getElementById('launchButton').addEventListener('click', function() {
-      document.getElementById('countdown').style.opacity = '1';
       startCountdown();
     });
 
     function startCountdown() {
+      let countdownValue = 10;
       const countdownInterval = setInterval(function() {
         countdownValue--;
-        document.getElementById('countdown').textContent = countdownValue;
-        if (countdownValue === 0 && !launchSuccess) {
+        document.getElementById('launchButton').textContent = `Launching in ${countdownValue}s`;
+        if (countdownValue === 0) {
           clearInterval(countdownInterval);
           launchRocket();
-          setTimeout(refreshPage, 5000);
         }
       }, 1000);
     }
 
     function launchRocket() {
-      launchSuccess = true;
-      document.getElementById('countdown').style.opacity = '0';
-      document.getElementById('catRocket').style.animation = 'rocketLaunch 3s forwards';
-      setTimeout(refreshPage, 5000);
+      document.getElementById('launchButton').style.display = 'none';
+      document.getElementById('rocketContainer').style.display = 'block';
+      document.getElementById('catRocket').style.transform = 'translateY(0)'; /* Move to top */
+      document.getElementById('successMessage').style.display = 'block';
+      setTimeout(refreshPage, 10000);
     }
 
     function refreshPage() {
