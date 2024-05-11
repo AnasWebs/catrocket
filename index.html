@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Rocket Launch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0c0c0c; /* Dark background */
+      color: #fff; /* White text color */
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    #launchButton {
+      padding: 10px 20px;
+      background-color: #4CAF50; /* Green button color */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #rocketContainer {
+      position: relative;
+      width: 200px;
+      height: 400px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+
+    #catRocket {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: bottom 1s ease-in-out;
+    }
+
+    #countdown {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4em;
+      color: #fff;
+      opacity: 0; /* Hide countdown initially */
+      animation: countdownAnimation 1s linear forwards;
+    }
+
+    @keyframes countdownAnimation {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes rocketLaunch {
+      0% { bottom: 0; }
+      100% { bottom: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Cat Rocket Launch</h1>
+    <button id="launchButton">Launch Cat Rocket</button>
+    <div id="rocketContainer">
+      <img id="catRocket" src="cat_rocket.png" alt="Cat Rocket">
+      <div id="countdown" class="countdown">10</div>
+    </div>
+  </div>
+  <script>
+    let countdownValue = 10; // Initial countdown value
+
+    document.getElementById('launchButton').addEventListener('click', function() {
+      document.getElementById('countdown').style.opacity = '1'; // Show countdown
+      startCountdown(); // Start the countdown
+    });
+
+    function startCountdown() {
+      const countdownInterval = setInterval(function() {
+        countdownValue--;
+        document.getElementById('countdown').textContent = countdownValue;
+        if (countdownValue === 0) {
+          clearInterval(countdownInterval);
+          launchRocket();
+          setTimeout(refreshPage, 10000); // Refresh page after 10 seconds of successful launch
+        }
+      }, 1000); // Update countdown every second
+    }
+
+    function launchRocket() {
+      document.getElementById('countdown').style.opacity = '0'; // Hide countdown
+      document.getElementById('catRocket').style.animation = 'rocketLaunch 3s forwards'; // Rocket launch animation
+    }
+
+    function refreshPage() {
+      window.location.reload(); // Refresh the page
+    }
+  </script>
+</body>
+</html>
