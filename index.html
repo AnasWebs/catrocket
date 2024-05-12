@@ -8,7 +8,7 @@
     /* General Styles */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: Green; /* Dark background */
+      background-color: black; /* Dark background */
       color: #e0e0e0; /* Light text color */
       margin: 0;
       padding: 0;
@@ -20,6 +20,10 @@
 
     .container {
       text-align: center;
+      width: 100px;
+      height: 200px;
+      margin-top: 50px;
+
     }
 
     h1 {
@@ -49,7 +53,7 @@
       width: 200px;
       height: 400px;
       margin-top: 50px;
-      overflow:;
+      overflow: hidden;
     }
 
     #catRocket {
@@ -57,12 +61,12 @@
       bottom: -1000px; /* Start from bottom */
       left: 50%;
       transform: translateX(-50%);
-      transition: transform 55s ease-in-out;
+      transition: transform 5s ease-in-out;
     }
 
     @keyframes launchAnimation {
       -50% { transform: translateY(0); } /* Start position */
-      120% { transform: translateY(-100%); } /* End position */
+      120% { transform: translateY(-200%); } /* End position */
     }
   </style>
 </head>
