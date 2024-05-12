@@ -18,38 +18,11 @@
       min-height: 100vh;
     }
 
-    .container {
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      color: #ffd700; /* Gold color for heading */
-    }
-
-    #launchButton {
-      padding: 12px 24px;
-      background-color: #ff4500; /* Orange button color */
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.2em;
-      transition: background-color 0.3s ease;
-    }
-
-    #launchButton:hover {
-      background-color: #ff6103; /* Lighter orange on hover */
-    }
-
     /* Rocket Container Styles */
     #rocketContainer {
       position: relative;
       width: 200px;
       height: 400px;
-      margin-top: 50px;
       overflow: hidden;
     }
 
@@ -68,35 +41,17 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to Cat Rocket Launch</h1>
-    <button id="launchButton">Launch Cat Rocket</button>
-    <div id="rocketContainer">
-      <img id="catRocket" src="InShot_20240511_231634080-removebg-preview.png" alt="Cat Rocket">
-    </div>
+  <div id="rocketContainer">
+    <img id="catRocket" src="InShot_20240511_231634080-removebg-preview.png" alt="Cat Rocket">
   </div>
 
   <script>
-    document.getElementById('launchButton').addEventListener('click', function() {
-      startCountdown();
-    });
-
-    function startCountdown() {
-      let countdownValue = 10;
-      const countdownInterval = setInterval(function() {
-        countdownValue--;
-        document.getElementById('launchButton').textContent = `Launching in ${countdownValue}s`;
-        if (countdownValue === 0) {
-          clearInterval(countdownInterval);
-          launchRocket();
-        }
-      }, 1000);
-    }
+    window.onload = function() {
+      launchRocket();
+    };
 
     function launchRocket() {
-      document.getElementById('launchButton').style.display = 'none';
       document.getElementById('catRocket').style.bottom = '0'; /* Move cat rocket to top position */
-      document.querySelector('h1').style.display = 'none'; /* Hide heading */
       setTimeout(refreshPage, 10000); // Refresh page after 10 seconds of launch
     }
 
