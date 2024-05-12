@@ -20,10 +20,7 @@
 
     .container {
       text-align: center;
-      width: 500px;
-      height: 100px;
-      margin-top: 100px;
-
+      margin-top: 50px;
     }
 
     h1 {
@@ -49,7 +46,7 @@
 
     /* Rocket Container Styles */
     #rocketContainer {
-      position: left;
+      position: relative;
       width: 200px;
       height: 400px;
       margin-top: 50px;
@@ -61,12 +58,12 @@
       bottom: -800px; /* Start from bottom */
       left: 50%;
       transform: translateX(-50%);
-      transition: transform 10s ease-in-out;
+      animation: launchAnimation 2s forwards; /* Enhanced launch animation */
     }
 
     @keyframes launchAnimation {
-      0% { transform: translateY(0); } /* Start position */
-      120% { transform: translateY(-150%); } /* End position */
+      0% { bottom: -800px; } /* Start position */
+      100% { bottom: 0; } /* End position */
     }
   </style>
 </head>
@@ -76,7 +73,7 @@
     <button id="launchButton">Launch Cat Rocket</button>
     <div id="rocketContainer">
       <img id="catRocket" src="InShot_20240511_231634080-removebg-preview.png" alt="Cat Rocket">
-  </div>
+    </div>
   </div>
 
   <script>
@@ -98,8 +95,9 @@
 
     function launchRocket() {
       document.getElementById('launchButton').style.display = 'none';
-      document.getElementById('catRocket').style.transform = 'translateY(-150%)'; /* Move to top */
-      setTimeout(refreshPage, 5000); // Refresh page after 3 seconds of launch
+      document.getElementById('catRocket').style.bottom = '0'; /* Move cat rocket to top position */
+      document.querySelector('h1').style.display = 'none'; /* Hide heading */
+      setTimeout(refreshPage, 10000); // Refresh page after 10 seconds of launch
     }
 
     function refreshPage() {
