@@ -8,7 +8,7 @@
     /* General Styles */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1a1a1a; /* Dark background */
+      background-color: Green; /* Dark background */
       color: #e0e0e0; /* Light text color */
       margin: 0;
       padding: 0;
@@ -54,25 +54,25 @@
 
     #catRocket {
       position: absolute;
-      bottom: -400px; /* Start from bottom */
+      bottom: -1000px; /* Start from bottom */
       left: 50%;
       transform: translateX(-50%);
-      transition: transform 3s ease-in-out;
+      transition: transform 55s ease-in-out;
     }
 
     @keyframes launchAnimation {
-      0% { transform: translateY(0); } /* Start position */
-      100% { transform: translateY(-100%); } /* End position */
+      -50% { transform: translateY(0); } /* Start position */
+      120% { transform: translateY(-100%); } /* End position */
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  
     <h1>Welcome to Cat Rocket Launch</h1>
     <button id="launchButton">Launch Cat Rocket</button>
     <div id="rocketContainer">
       <img id="catRocket" src="InShot_20240511_231634080-removebg-preview.png" alt="Cat Rocket">
-    </div>
+  
   </div>
 
   <script>
